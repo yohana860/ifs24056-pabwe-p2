@@ -16,7 +16,7 @@
 
     --text-main: #f7f9ff;
     --text-secondary: #9ba9c7;
-    --text-muted: #667492;
+    --text-muted: #7584a3;
 
     --blue: #6d8cff;
     --cyan: #65dfff;
@@ -69,6 +69,31 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+
+.skip-link {
+
+    position: absolute;
+
+    left: -9999px;
+    top: 0;
+
+    background: #0b1226;
+    color: #fff;
+
+    padding: 12px 18px;
+
+    border-radius: 0 0 8px 0;
+
+    z-index: 9999;
+
+}
+
+.skip-link:focus {
+
+    left: 0;
+
 }
 
 
@@ -464,6 +489,11 @@ textarea {
 
 .gradient-text {
 
+    /* Fallback warna solid (kontras tinggi) untuk browser lama
+       dan alat audit aksesibilitas yang tidak bisa membaca
+       gradient sebagai warna teks. */
+    color: #8fd6ff;
+
     background:
         linear-gradient(
             110deg,
@@ -475,7 +505,7 @@ textarea {
 
     background-clip: text;
 
-    color: transparent;
+    -webkit-text-fill-color: transparent;
 
 }
 
@@ -489,10 +519,22 @@ textarea {
 
 .outline-text {
 
-    color: transparent;
+    /* Fallback: browser yang tidak mendukung text-stroke
+       akan menampilkan teks solid ini, bukan teks kosong/invisible. */
+    color: #cdd6e8;
 
-    -webkit-text-stroke:
-        1px #65728e;
+}
+
+@supports (-webkit-text-stroke: 1px #000) or (text-stroke: 1px #000) {
+
+    .outline-text {
+
+        color: transparent;
+
+        -webkit-text-stroke:
+            1.5px #7f8fac;
+
+    }
 
 }
 
@@ -1205,13 +1247,15 @@ textarea {
 
 .about-content h2 span {
 
+    color: #8fd6ff;
+
     background: var(--gradient);
 
     -webkit-background-clip: text;
 
     background-clip: text;
 
-    color: transparent;
+    -webkit-text-fill-color: transparent;
 
 }
 
@@ -1453,7 +1497,7 @@ textarea {
 .form-group input::placeholder,
 .form-group textarea::placeholder {
 
-    color: #58657e;
+    color: #7584a3;
 
 }
 
@@ -1508,7 +1552,7 @@ textarea {
 
     margin-top: 12px;
 
-    color: #697793;
+    color: #8996b3;
 
     font-size: 13px;
 
@@ -1551,7 +1595,7 @@ textarea {
 
     text-align: center;
 
-    color: #58657e;
+    color: #7584a3;
 
     font-size: 12px;
 
@@ -1917,4 +1961,3 @@ textarea {
     }
 
 }
-

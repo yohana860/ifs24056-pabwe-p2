@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23405cff'/%3E%3Cstop offset='1' stop-color='%235ce2ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-weight='800' font-size='58' fill='white' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E">
 
 <style>
 :root{--bg:#030817;--surface:#070d21;--text:#f7f9ff;--muted:#9ba9c7;--blue:#6d8cff;--cyan:#65dfff;--border:rgba(255,255,255,.09)}
@@ -26,8 +27,8 @@ a{text-decoration:none}
 .article-wrap{padding:150px 0 80px}
 .breadcrumb{font-size:.8rem}
 .breadcrumb a{color:#8caeff}
-.breadcrumb-item.active{color:#667492}
-.breadcrumb-item+.breadcrumb-item::before{color:#4a5677}
+.breadcrumb-item.active{color:#7584a3}
+.breadcrumb-item+.breadcrumb-item::before{color:#7584a3}
 
 .badge-topic{display:inline-flex;align-items:center;background:rgba(80,130,255,.12);border:1px solid rgba(105,155,255,.3);color:#8fb4ff;border-radius:50px;padding:.4rem .9rem;font-size:.75rem;font-weight:600}
 .article-title{font-size:clamp(1.9rem,4vw,3rem);font-weight:800;letter-spacing:-1.5px;line-height:1.15}
@@ -52,7 +53,7 @@ blockquote.rag-quote footer{color:var(--cyan);font-size:.85rem;margin-top:.5rem}
 .list-check .bi{color:#63d99a}
 
 .comment-form textarea{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text)}
-.comment-form textarea::placeholder{color:#5c6a88}
+.comment-form textarea::placeholder{color:#7d8bab}
 .comment-form textarea:focus{background:rgba(255,255,255,.04);border-color:#638fff;color:var(--text);box-shadow:0 0 0 3px rgba(80,130,255,.12)}
 .btn-yonova{background:linear-gradient(100deg,#6688ff,#69bfff);border:none;color:#fff;font-weight:600}
 .btn-yonova:hover{color:#fff;filter:brightness(1.08)}
@@ -68,7 +69,10 @@ blockquote.rag-quote footer{color:var(--cyan);font-size:.85rem;margin-top:.5rem}
 .related-card h3{font-size:1rem;margin:0 0 8px}
 .related-card .read-more{color:#7da6ff;font-size:.8rem;font-weight:600}
 
-footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--border);color:#667492}
+footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--border);color:#8996b3}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:#0b1226;color:#fff;padding:12px 18px;border-radius:0 0 8px 0;z-index:9999}
+.skip-link:focus{left:0}
 
 @media (max-width:767px){
   .article-wrap{padding-top:120px}
@@ -77,6 +81,7 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Lewati ke konten utama</a>
 
 <nav class="navbar navbar-expand-lg navbar-dark yonova-nav fixed-top">
   <div class="container py-3">
@@ -100,7 +105,7 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
   </div>
 </nav>
 
-<main class="article-wrap">
+<main class="article-wrap" id="main-content">
   <div class="container">
     <div class="row justify-content-center">
       <article class="col-lg-9">
@@ -122,7 +127,7 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
           <div><i class="bi bi-clock me-1"></i> 5 menit baca</div>
         </div>
 
-        <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" class="article-cover mb-4" alt="Ilustrasi arsitektur RAG">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" class="article-cover mb-4" alt="Ilustrasi arsitektur RAG" width="1200" height="440" fetchpriority="high">
 
         <div class="article-body">
           <p class="lead">
@@ -149,7 +154,7 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
             </div>
           </div>
 
-          <h4 class="fw-bold text-white mt-4 mb-3">Tiga Keunggulan Utama Pendekatan RAG</h4>
+          <h2 class="fw-bold text-white mt-4 mb-3" style="font-size:1.3rem">Tiga Keunggulan Utama Pendekatan RAG</h2>
           <ul class="list-group list-group-flush list-check mb-4">
             <li class="list-group-item px-0"><i class="bi bi-check-circle-fill me-2"></i><strong>Biaya lebih rendah:</strong> tidak memerlukan retraining ulang model setiap ada perubahan dokumen.</li>
             <li class="list-group-item px-0"><i class="bi bi-check-circle-fill me-2"></i><strong>Transparansi sitasi:</strong> jawaban chatbot dapat menyertakan rujukan dokumen sumber.</li>
@@ -161,11 +166,11 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
 
         <!-- ARTIKEL TERKAIT -->
         <section class="mb-5">
-          <h4 class="fw-bold text-white mb-3">Artikel Terkait</h4>
+          <h2 class="fw-bold text-white mb-3" style="font-size:1.3rem">Artikel Terkait</h2>
           <div class="row g-3">
             <div class="col-md-4">
               <a href="blog.html" class="related-card d-block">
-                <img src="assets/img/Automation.jpg" alt="Business Automation">
+                <img src="assets/img/automation.webp" alt="Business Automation" width="700" height="426" loading="lazy" decoding="async">
                 <div class="body">
                   <h3>5 Pekerjaan Berulang yang Bisa Diotomatisasi dengan AI</h3>
                   <span class="read-more">Baca artikel ↗</span>
@@ -174,7 +179,7 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
             </div>
             <div class="col-md-4">
               <a href="blog.html" class="related-card d-block">
-                <img src="assets/img/datainteligent.jpg" alt="Data Intelligence">
+                <img src="assets/img/datainteligent.webp" alt="Data Intelligence" width="700" height="393" loading="lazy" decoding="async">
                 <div class="body">
                   <h3>Dari Data Menjadi Insight: Peran AI dalam Pengambilan Keputusan</h3>
                   <span class="read-more">Baca artikel ↗</span>
@@ -183,7 +188,7 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
             </div>
             <div class="col-md-4">
               <a href="blog.html" class="related-card d-block">
-                <img src="assets/img/computer-vision.jpg" alt="Computer Vision">
+                <img src="assets/img/computer-vision.webp" alt="Computer Vision" width="700" height="408" loading="lazy" decoding="async">
                 <div class="body">
                   <h3>Computer Vision: Ketika AI Mulai Memahami Dunia Visual</h3>
                   <span class="read-more">Baca artikel ↗</span>
@@ -195,7 +200,7 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
 
         <!-- AREA KOMENTAR -->
         <section>
-          <h4 class="fw-bold text-white mb-4"><i class="bi bi-chat-left-text me-2"></i>Diskusi &amp; Komentar</h4>
+          <h2 class="fw-bold text-white mb-4" style="font-size:1.3rem"><i class="bi bi-chat-left-text me-2"></i>Diskusi &amp; Komentar</h2>
 
           <form onsubmit="event.preventDefault(); alert('Komentar berhasil dikirim!'); this.reset();" class="comment-form mb-5">
             <div class="d-flex gap-3">
@@ -212,7 +217,7 @@ footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--bor
             <div>
               <div class="d-flex align-items-center gap-2">
                 <strong class="text-white">Arif Wibowo</strong>
-                <small style="color:#667492">1 hari yang lalu</small>
+                <small style="color:#7584a3">1 hari yang lalu</small>
               </div>
               <p class="small mb-0 mt-1" style="color:#aebbd4">
                 Sangat mencerahkan! Tim kami sedang mempertimbangkan vector database untuk sistem RAG dokumen internal. Ulasan ini sangat relevan.
