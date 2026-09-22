@@ -1,247 +1,531 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Penerapan Retrieval-Augmented Generation (RAG) untuk knowledge base korporasi — YONOVA Insights.">
-<title>Penerapan RAG untuk Knowledge Base Korporasi — YONOVA</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Penerapan Retrieval-Augmented Generation (RAG) untuk knowledge base korporasi — YONOVA Insights."
+    />
+    <title>Penerapan RAG untuk Knowledge Base Korporasi — YONOVA</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23405cff'/%3E%3Cstop offset='1' stop-color='%235ce2ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-weight='800' font-size='58' fill='white' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23405cff'/%3E%3Cstop offset='1' stop-color='%235ce2ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-weight='800' font-size='58' fill='white' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E"
+    />
 
-<style>
-:root{--bg:#030817;--surface:#070d21;--text:#f7f9ff;--muted:#9ba9c7;--blue:#6d8cff;--cyan:#65dfff;--border:rgba(255,255,255,.09)}
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text)}
-a{text-decoration:none}
-.yonova-nav{background:rgba(3,8,23,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
-.brand-mark{width:34px;height:34px;display:inline-grid;place-items:center;border-radius:10px;color:#fff;font-weight:800;font-size:22px;background:linear-gradient(135deg,#405cff,#5ce2ff);box-shadow:0 0 22px rgba(80,140,255,.3)}
-.brand-name{color:#fff;font-weight:700}
-.nav-link{color:#9ba9c7!important;font-size:.9rem}
-.nav-link:hover,.nav-link.active{color:#fff!important}
+    <style>
+      :root {
+        --bg: #030817;
+        --surface: #070d21;
+        --text: #f7f9ff;
+        --muted: #9ba9c7;
+        --blue: #6d8cff;
+        --cyan: #65dfff;
+        --border: rgba(255, 255, 255, 0.09);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      a {
+        text-decoration: none;
+      }
+      .yonova-nav {
+        background: rgba(3, 8, 23, 0.9);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--border);
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 10px;
+        color: #fff;
+        font-weight: 800;
+        font-size: 22px;
+        background: linear-gradient(135deg, #405cff, #5ce2ff);
+        box-shadow: 0 0 22px rgba(80, 140, 255, 0.3);
+      }
+      .brand-name {
+        color: #fff;
+        font-weight: 700;
+      }
+      .nav-link {
+        color: #9ba9c7 !important;
+        font-size: 0.9rem;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: #fff !important;
+      }
 
-.article-wrap{padding:150px 0 80px}
-.breadcrumb{font-size:.8rem}
-.breadcrumb a{color:#8caeff}
-.breadcrumb-item.active{color:#7584a3}
-.breadcrumb-item+.breadcrumb-item::before{color:#7584a3}
+      .article-wrap {
+        padding: 150px 0 80px;
+      }
+      .breadcrumb {
+        font-size: 0.8rem;
+      }
+      .breadcrumb a {
+        color: #8caeff;
+      }
+      .breadcrumb-item.active {
+        color: #7584a3;
+      }
+      .breadcrumb-item + .breadcrumb-item::before {
+        color: #7584a3;
+      }
 
-.badge-topic{display:inline-flex;align-items:center;background:rgba(80,130,255,.12);border:1px solid rgba(105,155,255,.3);color:#8fb4ff;border-radius:50px;padding:.4rem .9rem;font-size:.75rem;font-weight:600}
-.article-title{font-size:clamp(1.9rem,4vw,3rem);font-weight:800;letter-spacing:-1.5px;line-height:1.15}
+      .badge-topic {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(80, 130, 255, 0.12);
+        border: 1px solid rgba(105, 155, 255, 0.3);
+        color: #8fb4ff;
+        border-radius: 50px;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .article-title {
+        font-size: clamp(1.9rem, 4vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -1.5px;
+        line-height: 1.15;
+      }
 
-.meta-row{color:var(--muted);font-size:.85rem;border-bottom:1px solid var(--border);padding-bottom:1.5rem}
-.meta-row strong{color:var(--text)}
+      .meta-row {
+        color: var(--muted);
+        font-size: 0.85rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1.5rem;
+      }
+      .meta-row strong {
+        color: var(--text);
+      }
 
-.article-cover{max-height:440px;width:100%;object-fit:cover;border-radius:18px;border:1px solid var(--border)}
+      .article-cover {
+        max-height: 440px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+      }
 
-.article-body{color:#aebbd4;font-size:1.02rem;line-height:1.95}
-.article-body .lead{color:#d8e2f5;font-size:1.15rem}
-.article-body strong{color:var(--text)}
-.article-body em{color:#c6d3ef}
+      .article-body {
+        color: #aebbd4;
+        font-size: 1.02rem;
+        line-height: 1.95;
+      }
+      .article-body .lead {
+        color: #d8e2f5;
+        font-size: 1.15rem;
+      }
+      .article-body strong {
+        color: var(--text);
+      }
+      .article-body em {
+        color: #c6d3ef;
+      }
 
-blockquote.rag-quote{border-left:3px solid var(--cyan);background:rgba(100,200,255,.05);border-radius:0 12px 12px 0;padding:1.4rem 1.6rem;margin:2.2rem 0;color:#e4edfb;font-size:1.1rem;line-height:1.7}
-blockquote.rag-quote footer{color:var(--cyan);font-size:.85rem;margin-top:.5rem}
+      blockquote.rag-quote {
+        border-left: 3px solid var(--cyan);
+        background: rgba(100, 200, 255, 0.05);
+        border-radius: 0 12px 12px 0;
+        padding: 1.4rem 1.6rem;
+        margin: 2.2rem 0;
+        color: #e4edfb;
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+      blockquote.rag-quote footer {
+        color: var(--cyan);
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+      }
 
-.alert-yonova{background:rgba(80,130,255,.08);border:1px solid rgba(105,155,255,.25);border-radius:14px;color:#c9d6f2}
-.alert-yonova .bi{color:var(--cyan)}
+      .alert-yonova {
+        background: rgba(80, 130, 255, 0.08);
+        border: 1px solid rgba(105, 155, 255, 0.25);
+        border-radius: 14px;
+        color: #c9d6f2;
+      }
+      .alert-yonova .bi {
+        color: var(--cyan);
+      }
 
-.list-check li{border-color:var(--border)!important;background:transparent;color:#c3cee6}
-.list-check .bi{color:#63d99a}
+      .list-check li {
+        border-color: var(--border) !important;
+        background: transparent;
+        color: #c3cee6;
+      }
+      .list-check .bi {
+        color: #63d99a;
+      }
 
-.comment-form textarea{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text)}
-.comment-form textarea::placeholder{color:#7d8bab}
-.comment-form textarea:focus{background:rgba(255,255,255,.04);border-color:#638fff;color:var(--text);box-shadow:0 0 0 3px rgba(80,130,255,.12)}
-.btn-yonova{background:linear-gradient(100deg,#6688ff,#69bfff);border:none;color:#fff;font-weight:600}
-.btn-yonova:hover{color:#fff;filter:brightness(1.08)}
+      .comment-form textarea {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+      .comment-form textarea::placeholder {
+        color: #7d8bab;
+      }
+      .comment-form textarea:focus {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: #638fff;
+        color: var(--text);
+        box-shadow: 0 0 0 3px rgba(80, 130, 255, 0.12);
+      }
+      .btn-yonova {
+        background: linear-gradient(100deg, #6688ff, #69bfff);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+      }
+      .btn-yonova:hover {
+        color: #fff;
+        filter: brightness(1.08);
+      }
 
-.avatar-circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.avatar-primary{background:linear-gradient(135deg,#405cff,#5ce2ff);color:#fff}
-.avatar-secondary{background:#2a3552;color:#cfd9f0}
+      .avatar-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .avatar-primary {
+        background: linear-gradient(135deg, #405cff, #5ce2ff);
+        color: #fff;
+      }
+      .avatar-secondary {
+        background: #2a3552;
+        color: #cfd9f0;
+      }
 
-.related-card{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.018);transition:.3s ease;height:100%}
-.related-card:hover{transform:translateY(-5px);border-color:rgba(100,150,255,.35)}
-.related-card img{height:150px;width:100%;object-fit:cover}
-.related-card .body{padding:18px}
-.related-card h3{font-size:1rem;margin:0 0 8px}
-.related-card .read-more{color:#7da6ff;font-size:.8rem;font-weight:600}
+      .related-card {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.018);
+        transition: 0.3s ease;
+        height: 100%;
+      }
+      .related-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(100, 150, 255, 0.35);
+      }
+      .related-card img {
+        height: 150px;
+        width: 100%;
+        object-fit: cover;
+      }
+      .related-card .body {
+        padding: 18px;
+      }
+      .related-card h3 {
+        font-size: 1rem;
+        margin: 0 0 8px;
+      }
+      .related-card .read-more {
+        color: #7da6ff;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
 
-footer.site-footer{margin-top:80px;padding:45px 0;border-top:1px solid var(--border);color:#8996b3}
+      footer.site-footer {
+        margin-top: 80px;
+        padding: 45px 0;
+        border-top: 1px solid var(--border);
+        color: #8996b3;
+      }
 
-.skip-link{position:absolute;left:-9999px;top:0;background:#0b1226;color:#fff;padding:12px 18px;border-radius:0 0 8px 0;z-index:9999}
-.skip-link:focus{left:0}
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: #0b1226;
+        color: #fff;
+        padding: 12px 18px;
+        border-radius: 0 0 8px 0;
+        z-index: 9999;
+      }
+      .skip-link:focus {
+        left: 0;
+      }
 
-@media (max-width:767px){
-  .article-wrap{padding-top:120px}
-  .article-cover{max-height:260px}
-}
-</style>
-</head>
-<body>
-<a href="#main-content" class="skip-link">Lewati ke konten utama</a>
+      @media (max-width: 767px) {
+        .article-wrap {
+          padding-top: 120px;
+        }
+        .article-cover {
+          max-height: 260px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
 
-<nav class="navbar navbar-expand-lg navbar-dark yonova-nav fixed-top">
-  <div class="container py-3">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-      <span class="brand-mark">Y</span><span class="brand-name">YONOVA</span>
-    </a>
-    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Buka navigasi">
-      <i class="bi bi-list fs-3"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <div class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="index.html#layanan">Services</a>
-        <a class="nav-link" href="index.html#tentang">About</a>
-        <a class="nav-link active" href="blog.html">Blog</a>
-        <a class="nav-link" href="cv.html">CV</a>
-        <a class="nav-link" href="index.html#kontak">Contact</a>
-        <a class="btn btn-primary rounded-pill px-4 ms-lg-2" href="index.html#kontak">Get Started <i class="bi bi-arrow-up-right"></i></a>
+    <nav class="navbar navbar-expand-lg navbar-dark yonova-nav fixed-top">
+      <div class="container py-3">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <span class="brand-mark">Y</span><span class="brand-name">YONOVA</span>
+        </a>
+        <button
+          class="navbar-toggler border-0 shadow-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-label="Buka navigasi"
+        >
+          <i class="bi bi-list fs-3"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <div class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="index.html#layanan">Services</a>
+            <a class="nav-link" href="index.html#tentang">About</a>
+            <a class="nav-link active" href="blog.html">Blog</a>
+            <a class="nav-link" href="cv.html">CV</a>
+            <a class="nav-link" href="index.html#kontak">Contact</a>
+            <a class="btn btn-primary rounded-pill px-4 ms-lg-2" href="index.html#kontak"
+              >Get Started <i class="bi bi-arrow-up-right"></i
+            ></a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</nav>
+    </nav>
 
-<main class="article-wrap" id="main-content">
-  <div class="container">
-    <div class="row justify-content-center">
-      <article class="col-lg-9">
+    <main class="article-wrap" id="main-content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <article class="col-lg-9">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mb-3">
+                <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+                <li class="breadcrumb-item"><a href="blog.html">Blog AI</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail Artikel</li>
+              </ol>
+            </nav>
 
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-3">
-            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-            <li class="breadcrumb-item"><a href="blog.html">Blog AI</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Detail Artikel</li>
-          </ol>
-        </nav>
+            <span class="badge-topic"><i class="bi bi-cpu me-1"></i> Generative AI &amp; Architecture</span>
+            <h1 class="article-title mt-3 mb-3">
+              Penerapan Retrieval-Augmented Generation (RAG) untuk Knowledge Base Korporasi
+            </h1>
 
-        <span class="badge-topic"><i class="bi bi-cpu me-1"></i> Generative AI &amp; Architecture</span>
-        <h1 class="article-title mt-3 mb-3">Penerapan Retrieval-Augmented Generation (RAG) untuk Knowledge Base Korporasi</h1>
-
-        <div class="d-flex flex-wrap align-items-center gap-4 meta-row mb-4">
-          <div><i class="bi bi-person-circle me-1" style="color:var(--blue)"></i> <strong>Surya Dinata</strong> · Lead AI Architect, YONOVA</div>
-          <div><i class="bi bi-calendar3 me-1"></i> 14 September 2026</div>
-          <div><i class="bi bi-clock me-1"></i> 5 menit baca</div>
-        </div>
-
-        <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" class="article-cover mb-4" alt="Ilustrasi arsitektur RAG" width="1200" height="440" fetchpriority="high">
-
-        <div class="article-body">
-          <p class="lead">
-            Tantangan terbesar dalam mengadopsi Large Language Model (LLM) di lingkungan perusahaan bukanlah kemampuan model dalam merangkai kalimat, melainkan keterbatasannya terhadap konteks data internal yang bersifat privat dan dinamis.
-          </p>
-
-          <p>
-            Model pra-latih (pre-trained model) seringkali mengalami fenomena <em>hallucination</em>, yaitu memberikan informasi yang tampak meyakinkan namun salah secara faktual ketika ditanya mengenai SOP internal, katalog inventaris, atau laporan keuangan kuartal terbaru. Di sinilah metode <strong>Retrieval-Augmented Generation (RAG)</strong> menjadi standar umum. Alih-alih melakukan fine-tuning yang memakan biaya komputasi GPU sangat besar, sistem RAG mengindeks dokumen perusahaan ke dalam <em>vector database</em> seperti ChromaDB atau Qdrant.
-          </p>
-
-          <blockquote class="rag-quote">
-            <p class="mb-1">"RAG menghubungkan kecerdasan linguistik model AI modern dengan sumber data bisnis internal perusahaan secara real-time."</p>
-            <footer>— Riset AI YONOVA, 2026</footer>
-          </blockquote>
-
-          <p>
-            Ketika pengguna mengajukan pertanyaan, query tersebut diubah menjadi representasi vektor (embeddings), lalu sistem mencari fragmen dokumen yang paling relevan secara semantik. Fragmen dokumen tersebut kemudian disuntikkan ke dalam prompt sebagai konteks acuan sebelum dijawab oleh model LLM. Hasilnya, jawaban model memiliki rujukan sumber dokumen yang lebih transparan dan dapat ditelusuri.
-          </p>
-
-          <div class="alert alert-yonova d-flex align-items-start rounded-3 my-4 p-3" role="alert">
-            <i class="bi bi-info-circle-fill fs-4 me-3"></i>
-            <div>
-              <strong class="text-white">Catatan Keamanan:</strong> pastikan arsitektur RAG menerapkan <em>Role-Based Access Control (RBAC)</em> pada level vector database, agar pengguna hanya menerima jawaban dari dokumen yang memiliki izin aksesnya.
-            </div>
-          </div>
-
-          <h2 class="fw-bold text-white mt-4 mb-3" style="font-size:1.3rem">Tiga Keunggulan Utama Pendekatan RAG</h2>
-          <ul class="list-group list-group-flush list-check mb-4">
-            <li class="list-group-item px-0"><i class="bi bi-check-circle-fill me-2"></i><strong>Biaya lebih rendah:</strong> tidak memerlukan retraining ulang model setiap ada perubahan dokumen.</li>
-            <li class="list-group-item px-0"><i class="bi bi-check-circle-fill me-2"></i><strong>Transparansi sitasi:</strong> jawaban chatbot dapat menyertakan rujukan dokumen sumber.</li>
-            <li class="list-group-item px-0"><i class="bi bi-check-circle-fill me-2"></i><strong>Keamanan data:</strong> data sensitif tetap tersimpan di server lokal atau private cloud perusahaan.</li>
-          </ul>
-        </div>
-
-        <hr class="my-5" style="border-color:var(--border)">
-
-        <!-- ARTIKEL TERKAIT -->
-        <section class="mb-5">
-          <h2 class="fw-bold text-white mb-3" style="font-size:1.3rem">Artikel Terkait</h2>
-          <div class="row g-3">
-            <div class="col-md-4">
-              <a href="blog.html" class="related-card d-block">
-                <img src="assets/img/automation.webp" alt="Business Automation" width="700" height="426" loading="lazy" decoding="async">
-                <div class="body">
-                  <h3>5 Pekerjaan Berulang yang Bisa Diotomatisasi dengan AI</h3>
-                  <span class="read-more">Baca artikel ↗</span>
-                </div>
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="blog.html" class="related-card d-block">
-                <img src="assets/img/datainteligent.webp" alt="Data Intelligence" width="700" height="393" loading="lazy" decoding="async">
-                <div class="body">
-                  <h3>Dari Data Menjadi Insight: Peran AI dalam Pengambilan Keputusan</h3>
-                  <span class="read-more">Baca artikel ↗</span>
-                </div>
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="blog.html" class="related-card d-block">
-                <img src="assets/img/computer-vision.webp" alt="Computer Vision" width="700" height="408" loading="lazy" decoding="async">
-                <div class="body">
-                  <h3>Computer Vision: Ketika AI Mulai Memahami Dunia Visual</h3>
-                  <span class="read-more">Baca artikel ↗</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- AREA KOMENTAR -->
-        <section>
-          <h2 class="fw-bold text-white mb-4" style="font-size:1.3rem"><i class="bi bi-chat-left-text me-2"></i>Diskusi &amp; Komentar</h2>
-
-          <form onsubmit="event.preventDefault(); alert('Komentar berhasil dikirim!'); this.reset();" class="comment-form mb-5">
-            <div class="d-flex gap-3">
-              <div class="avatar-circle avatar-primary"><i class="bi bi-person-fill fs-5"></i></div>
-              <div class="w-100">
-                <textarea class="form-control mb-2" rows="3" required placeholder="Tulis tanggapan atau pertanyaan seputar artikel ini..."></textarea>
-                <button type="submit" class="btn btn-yonova btn-sm px-4 rounded-pill">Kirim Komentar</button>
+            <div class="d-flex flex-wrap align-items-center gap-4 meta-row mb-4">
+              <div>
+                <i class="bi bi-person-circle me-1" style="color: var(--blue)"></i> <strong>Surya Dinata</strong> · Lead
+                AI Architect, YONOVA
               </div>
+              <div><i class="bi bi-calendar3 me-1"></i> 14 September 2026</div>
+              <div><i class="bi bi-clock me-1"></i> 5 menit baca</div>
             </div>
-          </form>
 
-          <div class="d-flex gap-3 mb-3 pb-3" style="border-bottom:1px solid var(--border)">
-            <div class="avatar-circle avatar-secondary"><i class="bi bi-person"></i></div>
-            <div>
-              <div class="d-flex align-items-center gap-2">
-                <strong class="text-white">Arif Wibowo</strong>
-                <small style="color:#7584a3">1 hari yang lalu</small>
-              </div>
-              <p class="small mb-0 mt-1" style="color:#aebbd4">
-                Sangat mencerahkan! Tim kami sedang mempertimbangkan vector database untuk sistem RAG dokumen internal. Ulasan ini sangat relevan.
+            <img
+              src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+              class="article-cover mb-4"
+              alt="Ilustrasi arsitektur RAG"
+              width="1200"
+              height="440"
+              fetchpriority="high"
+            />
+
+            <div class="article-body">
+              <p class="lead">
+                Tantangan terbesar dalam mengadopsi Large Language Model (LLM) di lingkungan perusahaan bukanlah
+                kemampuan model dalam merangkai kalimat, melainkan keterbatasannya terhadap konteks data internal yang
+                bersifat privat dan dinamis.
               </p>
+
+              <p>
+                Model pra-latih (pre-trained model) seringkali mengalami fenomena <em>hallucination</em>, yaitu
+                memberikan informasi yang tampak meyakinkan namun salah secara faktual ketika ditanya mengenai SOP
+                internal, katalog inventaris, atau laporan keuangan kuartal terbaru. Di sinilah metode
+                <strong>Retrieval-Augmented Generation (RAG)</strong> menjadi standar umum. Alih-alih melakukan
+                fine-tuning yang memakan biaya komputasi GPU sangat besar, sistem RAG mengindeks dokumen perusahaan ke
+                dalam <em>vector database</em> seperti ChromaDB atau Qdrant.
+              </p>
+
+              <blockquote class="rag-quote">
+                <p class="mb-1">
+                  "RAG menghubungkan kecerdasan linguistik model AI modern dengan sumber data bisnis internal perusahaan
+                  secara real-time."
+                </p>
+                <footer>— Riset AI YONOVA, 2026</footer>
+              </blockquote>
+
+              <p>
+                Ketika pengguna mengajukan pertanyaan, query tersebut diubah menjadi representasi vektor (embeddings),
+                lalu sistem mencari fragmen dokumen yang paling relevan secara semantik. Fragmen dokumen tersebut
+                kemudian disuntikkan ke dalam prompt sebagai konteks acuan sebelum dijawab oleh model LLM. Hasilnya,
+                jawaban model memiliki rujukan sumber dokumen yang lebih transparan dan dapat ditelusuri.
+              </p>
+
+              <div class="alert alert-yonova d-flex align-items-start rounded-3 my-4 p-3" role="alert">
+                <i class="bi bi-info-circle-fill fs-4 me-3"></i>
+                <div>
+                  <strong class="text-white">Catatan Keamanan:</strong> pastikan arsitektur RAG menerapkan
+                  <em>Role-Based Access Control (RBAC)</em> pada level vector database, agar pengguna hanya menerima
+                  jawaban dari dokumen yang memiliki izin aksesnya.
+                </div>
+              </div>
+
+              <h2 class="fw-bold text-white mt-4 mb-3" style="font-size: 1.3rem">
+                Tiga Keunggulan Utama Pendekatan RAG
+              </h2>
+              <ul class="list-group list-group-flush list-check mb-4">
+                <li class="list-group-item px-0">
+                  <i class="bi bi-check-circle-fill me-2"></i><strong>Biaya lebih rendah:</strong> tidak memerlukan
+                  retraining ulang model setiap ada perubahan dokumen.
+                </li>
+                <li class="list-group-item px-0">
+                  <i class="bi bi-check-circle-fill me-2"></i><strong>Transparansi sitasi:</strong> jawaban chatbot
+                  dapat menyertakan rujukan dokumen sumber.
+                </li>
+                <li class="list-group-item px-0">
+                  <i class="bi bi-check-circle-fill me-2"></i><strong>Keamanan data:</strong> data sensitif tetap
+                  tersimpan di server lokal atau private cloud perusahaan.
+                </li>
+              </ul>
             </div>
-          </div>
-        </section>
 
-      </article>
-    </div>
-  </div>
-</main>
+            <hr class="my-5" style="border-color: var(--border)" />
 
-<footer class="site-footer">
-  <div class="container d-flex flex-column flex-md-row justify-content-between gap-3">
-    <div>
-      <strong class="text-white">YONOVA</strong>
-      <div class="small mt-1">A New Era of Intelligence.</div>
-    </div>
-    <a href="blog.html" class="small" style="color:#8caeff"><i class="bi bi-arrow-left me-1"></i>Kembali ke Daftar Artikel Blog</a>
-    <div class="small">© 2026 YONOVA. All rights reserved.</div>
-  </div>
-</footer>
+            <!-- ARTIKEL TERKAIT -->
+            <section class="mb-5">
+              <h2 class="fw-bold text-white mb-3" style="font-size: 1.3rem">Artikel Terkait</h2>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <a href="blog-detail.html?id=automation" class="related-card d-block">
+                    <img
+                      src="assets/img/automation.webp"
+                      alt="Business Automation"
+                      width="700"
+                      height="426"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="body">
+                      <h3>5 Pekerjaan Berulang yang Bisa Diotomatisasi dengan AI</h3>
+                      <span class="read-more">Baca artikel ↗</span>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a href="blog-detail.html?id=data-intelligence" class="related-card d-block">
+                    <img
+                      src="assets/img/datainteligent.webp"
+                      alt="Data Intelligence"
+                      width="700"
+                      height="393"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="body">
+                      <h3>Dari Data Menjadi Insight: Peran AI dalam Pengambilan Keputusan</h3>
+                      <span class="read-more">Baca artikel ↗</span>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a href="blog-detail.html?id=computer-vision" class="related-card d-block">
+                    <img
+                      src="assets/img/computer-vision.webp"
+                      alt="Computer Vision"
+                      width="700"
+                      height="408"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="body">
+                      <h3>Computer Vision: Ketika AI Mulai Memahami Dunia Visual</h3>
+                      <span class="read-more">Baca artikel ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+            <!-- AREA KOMENTAR -->
+            <section>
+              <h2 class="fw-bold text-white mb-4" style="font-size: 1.3rem">
+                <i class="bi bi-chat-left-text me-2"></i>Diskusi &amp; Komentar
+              </h2>
+
+              <form
+                onsubmit="
+                  event.preventDefault();
+                  alert('Komentar berhasil dikirim!');
+                  this.reset();
+                "
+                class="comment-form mb-5"
+              >
+                <div class="d-flex gap-3">
+                  <div class="avatar-circle avatar-primary"><i class="bi bi-person-fill fs-5"></i></div>
+                  <div class="w-100">
+                    <textarea
+                      class="form-control mb-2"
+                      rows="3"
+                      required
+                      placeholder="Tulis tanggapan atau pertanyaan seputar artikel ini..."
+                    ></textarea>
+                    <button type="submit" class="btn btn-yonova btn-sm px-4 rounded-pill">Kirim Komentar</button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="d-flex gap-3 mb-3 pb-3" style="border-bottom: 1px solid var(--border)">
+                <div class="avatar-circle avatar-secondary"><i class="bi bi-person"></i></div>
+                <div>
+                  <div class="d-flex align-items-center gap-2">
+                    <strong class="text-white">Arif Wibowo</strong>
+                    <small style="color: #7584a3">1 hari yang lalu</small>
+                  </div>
+                  <p class="small mb-0 mt-1" style="color: #aebbd4">
+                    Sangat mencerahkan! Tim kami sedang mempertimbangkan vector database untuk sistem RAG dokumen
+                    internal. Ulasan ini sangat relevan.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container d-flex flex-column flex-md-row justify-content-between gap-3">
+        <div>
+          <strong class="text-white">YONOVA</strong>
+          <div class="small mt-1">A New Era of Intelligence.</div>
+        </div>
+        <a href="blog.html" class="small" style="color: #8caeff"
+          ><i class="bi bi-arrow-left me-1"></i>Kembali ke Daftar Artikel Blog</a
+        >
+        <div class="small">© 2026 YONOVA. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

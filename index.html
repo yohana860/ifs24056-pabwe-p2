@@ -1,38 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>YONOVA — A New Era of Intelligence</title>
 
-    <meta 
-        name="description"
-        content="YONOVA menghadirkan solusi Artificial Intelligence untuk bisnis yang lebih cerdas, adaptif, dan efisien."
-    >
+    <meta
+      name="description"
+      content="YONOVA menghadirkan solusi Artificial Intelligence untuk bisnis yang lebih cerdas, adaptif, dan efisien."
+    />
 
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- External CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- Favicon (mencegah request /favicon.ico 404 di console) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23405cff'/%3E%3Cstop offset='1' stop-color='%235ce2ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-weight='800' font-size='58' fill='white' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E">
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23405cff'/%3E%3Cstop offset='1' stop-color='%235ce2ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-weight='800' font-size='58' fill='white' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E"
+    />
 
     <!-- Preload gambar hero (LCP) agar dimuat lebih awal -->
-    <link rel="preload" as="image" href="assets/img/logo-yonova.webp" fetchpriority="high">
-</head>
+    <link rel="preload" as="image" href="assets/img/logo-yonova.webp" fetchpriority="high" />
+  </head>
 
-
-<body>
-
+  <body>
     <!-- Skip link untuk aksesibilitas keyboard -->
     <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
 
@@ -40,557 +42,375 @@
          NAVBAR
     ========================== -->
     <header class="navbar-wrapper">
+      <nav class="navbar">
+        <!-- Brand -->
+        <a href="index.html" class="brand">
+          <span class="brand-logo">Y</span>
 
-        <nav class="navbar">
+          <span class="brand-name"> YONOVA </span>
+        </a>
 
-            <!-- Brand -->
-            <a href="index.html" class="brand">
+        <!-- Navigation -->
+        <div class="nav-links" id="navLinks">
+          <a href="#home" class="active"> Home </a>
 
-                <span class="brand-logo">Y</span>
+          <a href="#layanan"> Services </a>
 
-                <span class="brand-name">
-                    YONOVA
-                </span>
+          <a href="#tentang"> About </a>
 
-            </a>
+          <a href="blog.html"> Blog </a>
 
+          <a href="cv.html"> CV </a>
 
-            <!-- Navigation -->
-            <div class="nav-links" id="navLinks">
+          <a href="#kontak"> Contact </a>
+        </div>
 
-                <a href="#home" class="active">
-                    Home
-                </a>
+        <!-- Navbar CTA -->
+        <a href="#kontak" class="nav-button"> Get Started </a>
 
-                <a href="#layanan">
-                    Services
-                </a>
-
-                <a href="#tentang">
-                    About
-                </a>
-
-                <a href="blog.html">
-                    Blog
-                </a>
-
-                <a href="cv.html">
-                    CV
-                </a>
-
-                <a href="#kontak">
-                    Contact
-                </a>
-
-            </div>
-
-
-            <!-- Navbar CTA -->
-            <a href="#kontak" class="nav-button">
-                Get Started
-            </a>
-
-            <!-- Mobile menu toggle -->
-            <button
-                type="button"
-                class="nav-toggle"
-                id="navToggle"
-                aria-label="Buka menu navigasi"
-                aria-expanded="false"
-                aria-controls="navLinks"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-        </nav>
-
+        <!-- Mobile menu toggle -->
+        <button
+          type="button"
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
     </header>
-
-
 
     <!-- =========================
          MAIN
     ========================== -->
     <main id="main-content">
-
-
-        <!-- =========================
+      <!-- =========================
              HERO
         ========================== -->
-        <section id="home" class="hero">
+      <section id="home" class="hero">
+        <div class="hero-container">
+          <!-- LEFT CONTENT -->
+          <div class="hero-content">
+            <div class="eyebrow"></div>
 
-            <div class="hero-container">
+            <h1 class="hero-title">
+              <span class="gradient-text"> Shaping </span>
 
+              <span class="solid-text"> Intelligence </span>
 
-                <!-- LEFT CONTENT -->
-                <div class="hero-content">
+              <span class="outline-text"> For What </span>
 
-                    <div class="eyebrow">
-                    </div>
+              <span class="outline-text"> Comes Next </span>
+            </h1>
 
-                    <h1 class="hero-title">
+            <p class="hero-description">
+              YONOVA menciptakan solusi Artificial Intelligence yang membantu bisnis mengubah tantangan kompleks menjadi
+              peluang yang lebih cerdas dan bermakna.
+            </p>
 
-                        <span class="gradient-text">
-                            Shaping
-                        </span>
+            <!-- BUTTONS -->
+            <div class="hero-buttons">
+              <a href="#layanan" class="button button-primary">
+                Explore Solutions
 
-                        <span class="solid-text">
-                            Intelligence
-                        </span>
+                <span>↗</span>
+              </a>
 
-                        <span class="outline-text">
-                            For What
-                        </span>
+              <a href="#tentang" class="button button-secondary">
+                <span class="play-circle"> ▶ </span>
 
-                        <span class="outline-text">
-                            Comes Next
-                        </span>
-
-                    </h1>
-
-
-                    <p class="hero-description">
-
-                        YONOVA menciptakan solusi Artificial Intelligence
-                        yang membantu bisnis mengubah tantangan kompleks
-                        menjadi peluang yang lebih cerdas dan bermakna.
-
-                    </p>
-
-
-                    <!-- BUTTONS -->
-                    <div class="hero-buttons">
-
-                        <a href="#layanan" class="button button-primary">
-
-                            Explore Solutions
-
-                            <span>↗</span>
-
-                        </a>
-
-
-                        <a href="#tentang" class="button button-secondary">
-
-                            <span class="play-circle">
-                                ▶
-                            </span>
-
-                            Watch Demo
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- Small info -->
-                    <div class="hero-bottom-info">
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- RIGHT VISUAL -->
-                <div class="hero-visual">
-
-                    <!-- Glow -->
-                    <div class="visual-glow"></div>
-
-
-                    <!-- Logo image -->
-                    <div class="logo-container">
-
-                        <img
-                            src="assets/img/logo-yonova.webp"
-                            alt="YONOVA Logo"
-                            class="hero-logo"
-                            width="1100"
-                            height="733"
-                            fetchpriority="high"
-                        >
-
-                    </div>
-
-
-                    <!-- Orbit -->
-                    <div class="orbit"></div>
-
-
-                    <!-- Floating lights -->
-                    <span class="light light-one"></span>
-                    <span class="light light-two"></span>
-                    <span class="light light-three"></span>
-
-                </div>
-
+                Watch Demo
+              </a>
             </div>
 
-        </section>
+            <!-- Small info -->
+            <div class="hero-bottom-info"></div>
+          </div>
 
+          <!-- RIGHT VISUAL -->
+          <div class="hero-visual">
+            <!-- Glow -->
+            <div class="visual-glow"></div>
 
+            <!-- Logo image -->
+            <div class="logo-container">
+              <img
+                src="assets/img/logo-yonova.webp"
+                alt="YONOVA Logo"
+                class="hero-logo"
+                width="1100"
+                height="733"
+                fetchpriority="high"
+              />
+            </div>
 
-        <!-- =========================
+            <!-- Orbit -->
+            <div class="orbit"></div>
+
+            <!-- Floating lights -->
+            <span class="light light-one"></span>
+            <span class="light light-two"></span>
+            <span class="light light-three"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
              SERVICES
         ========================== -->
-        <section id="layanan" class="services section">
+      <section id="layanan" class="services section">
+        <div class="section-container">
+          <div class="section-header">
+            <div>
+              <p class="section-label">WHAT WE DO</p>
 
-            <div class="section-container">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <p class="section-label">
-                            WHAT WE DO
-                        </p>
-
-                        <h2>
-                            Intelligence built<br>
-                            for real-world impact.
-                        </h2>
-
-                    </div>
-
-
-                    <p class="section-description">
-
-                        Kami menggabungkan teknologi AI dengan
-                        kebutuhan nyata bisnis untuk menghasilkan
-                        solusi yang sederhana dan bermanfaat.
-
-                    </p>
-
-                </div>
-
-
-
-                <div class="services-grid">
-
-
-                    <!-- CARD 01: AI Chatbot -->
-                    <article class="service-card">
-                        <div class="card-image">
-                            <img src="assets/img/chatbot.webp" alt="AI Chatbot" width="700" height="466" loading="lazy" decoding="async">
-                            <span class="card-number">01</span>
-                        </div>
-
-                        <div class="card-body">
-                            <h3>AI Chatbot</h3>
-                            <p>
-                                Chatbot dan virtual assistant untuk membantu
-                                komunikasi dan pelayanan pelanggan secara otomatis.
-                            </p>
-                            <a href="#kontak">Explore service ↗</a>
-                        </div>
-                    </article>
-
-
-                    <!-- CARD 02: Business Automation -->
-                    <article class="service-card">
-                        <div class="card-image">
-                            <img src="assets/img/automation.webp" alt="Business Automation" width="700" height="426" loading="lazy" decoding="async">
-                            <span class="card-number">02</span>
-                        </div>
-
-                        <div class="card-body">
-                            <h3>Business Automation</h3>
-                            <p>
-                                Mengotomatisasi pekerjaan berulang
-                                agar proses bisnis menjadi lebih
-                                cepat dan efisien.
-                            </p>
-                            <a href="#kontak">Explore service ↗</a>
-                        </div>
-                    </article>
-
-                    <!-- CARD 03: Data Intelligence -->
-                    <article class="service-card">
-                        <div class="card-image">
-                            <img src="assets/img/datainteligent.webp" alt="Data Intelligence" width="700" height="393" loading="lazy" decoding="async">
-                            <span class="card-number">03</span>
-                        </div>
-
-                        <div class="card-body">
-                            <h3>Data Intelligence</h3>
-                            <p>
-                                Mengubah data menjadi insight yang
-                                membantu bisnis mengambil keputusan
-                                dengan lebih baik.
-                            </p>
-                            <a href="#kontak">Explore service ↗</a>
-                        </div>
-                    </article>
-
-                    <!-- CARD 04: Computer Vision -->
-                    <article class="service-card">
-                        <div class="card-image">
-                            <img src="assets/img/computer-vision.webp" alt="Computer Vision" width="700" height="408" loading="lazy" decoding="async">
-                            <span class="card-number">04</span>
-                        </div>
-
-                        <div class="card-body">
-                            <h3>Computer Vision</h3>
-                            <p>
-                                Sistem AI yang mampu memahami gambar
-                                dan video untuk kebutuhan bisnis.
-                            </p>
-                            <a href="#kontak">Explore service ↗</a>
-                        </div>
-                    </article>
-
-                </div>
-
+              <h2>
+                Intelligence built<br />
+                for real-world impact.
+              </h2>
             </div>
 
-        </section>
-
-
-
-        <!-- ==================== ABOUT YONOVA ==================== -->
-<section class="about-section" id="tentang">
-    <div class="container about-container">
-
-        <!-- Logo YONOVA -->
-        <div class="about-visual">
-            <div class="about-logo">
-                <span>Y</span>
-
-                <!-- Orbit -->
-                <div class="logo-orbit"></div>
-
-                <!-- Glowing dots -->
-                <div class="orbit-dot dot-one"></div>
-                <div class="orbit-dot dot-two"></div>
-            </div>
-
-            <p class="about-caption">
-                Intelligence designed for real-world impact.
+            <p class="section-description">
+              Kami menggabungkan teknologi AI dengan kebutuhan nyata bisnis untuk menghasilkan solusi yang sederhana dan
+              bermanfaat.
             </p>
+          </div>
+
+          <div class="services-grid">
+            <!-- CARD 01: AI Chatbot -->
+            <article class="service-card">
+              <div class="card-image">
+                <img
+                  src="assets/img/chatbot.webp"
+                  alt="AI Chatbot"
+                  width="700"
+                  height="466"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="card-number">01</span>
+              </div>
+
+              <div class="card-body">
+                <h3>AI Chatbot</h3>
+                <p>Chatbot dan virtual assistant untuk membantu komunikasi dan pelayanan pelanggan secara otomatis.</p>
+                <a href="#kontak">Explore service ↗</a>
+              </div>
+            </article>
+
+            <!-- CARD 02: Business Automation -->
+            <article class="service-card">
+              <div class="card-image">
+                <img
+                  src="assets/img/automation.webp"
+                  alt="Business Automation"
+                  width="700"
+                  height="426"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="card-number">02</span>
+              </div>
+
+              <div class="card-body">
+                <h3>Business Automation</h3>
+                <p>Mengotomatisasi pekerjaan berulang agar proses bisnis menjadi lebih cepat dan efisien.</p>
+                <a href="#kontak">Explore service ↗</a>
+              </div>
+            </article>
+
+            <!-- CARD 03: Data Intelligence -->
+            <article class="service-card">
+              <div class="card-image">
+                <img
+                  src="assets/img/datainteligent.webp"
+                  alt="Data Intelligence"
+                  width="700"
+                  height="393"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="card-number">03</span>
+              </div>
+
+              <div class="card-body">
+                <h3>Data Intelligence</h3>
+                <p>Mengubah data menjadi insight yang membantu bisnis mengambil keputusan dengan lebih baik.</p>
+                <a href="#kontak">Explore service ↗</a>
+              </div>
+            </article>
+
+            <!-- CARD 04: Computer Vision -->
+            <article class="service-card">
+              <div class="card-image">
+                <img
+                  src="assets/img/computer-vision.webp"
+                  alt="Computer Vision"
+                  width="700"
+                  height="408"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="card-number">04</span>
+              </div>
+
+              <div class="card-body">
+                <h3>Computer Vision</h3>
+                <p>Sistem AI yang mampu memahami gambar dan video untuk kebutuhan bisnis.</p>
+                <a href="#kontak">Explore service ↗</a>
+              </div>
+            </article>
+          </div>
         </div>
+      </section>
 
-        <!-- Content -->
-        <div class="about-content">
+      <!-- ==================== ABOUT YONOVA ==================== -->
+      <section class="about-section" id="tentang">
+        <div class="container about-container">
+          <!-- Logo YONOVA -->
+          <div class="about-visual">
+            <div class="about-logo">
+              <span>Y</span>
 
-            <span class="section-label">
-                ABOUT YONOVA
-            </span>
+              <!-- Orbit -->
+              <div class="logo-orbit"></div>
+
+              <!-- Glowing dots -->
+              <div class="orbit-dot dot-one"></div>
+              <div class="orbit-dot dot-two"></div>
+            </div>
+
+            <p class="about-caption">Intelligence designed for real-world impact.</p>
+          </div>
+
+          <!-- Content -->
+          <div class="about-content">
+            <span class="section-label"> ABOUT YONOVA </span>
 
             <h2>
-                Technology with
-                <span>purpose.</span>
+              Technology with
+              <span>purpose.</span>
             </h2>
 
             <p class="about-lead">
-                YONOVA adalah perusahaan jasa
-                <strong>Artificial Intelligence (AI)</strong>
-                yang membantu bisnis memanfaatkan teknologi untuk
-                bekerja lebih cerdas, cepat, dan efisien.
+              YONOVA adalah perusahaan jasa
+              <strong>Artificial Intelligence (AI)</strong>
+              yang membantu bisnis memanfaatkan teknologi untuk bekerja lebih cerdas, cepat, dan efisien.
             </p>
 
             <p>
-                Kami merancang dan mengembangkan solusi AI yang disesuaikan
-                dengan kebutuhan setiap bisnis. Mulai dari mengotomatisasi
-                pekerjaan yang berulang, membangun chatbot cerdas,
-                menganalisis data, hingga mengembangkan sistem yang mampu
-                mengenali gambar dan pola secara otomatis.
+              Kami merancang dan mengembangkan solusi AI yang disesuaikan dengan kebutuhan setiap bisnis. Mulai dari
+              mengotomatisasi pekerjaan yang berulang, membangun chatbot cerdas, menganalisis data, hingga mengembangkan
+              sistem yang mampu mengenali gambar dan pola secara otomatis.
             </p>
 
             <p>
-                YONOVA hadir untuk menjembatani teknologi AI dengan
-                permasalahan nyata di dunia bisnis sehingga AI bukan hanya
-                menjadi teknologi yang terlihat canggih, tetapi benar-benar
-                memberikan manfaat yang dapat digunakan dan dirasakan.
+              YONOVA hadir untuk menjembatani teknologi AI dengan permasalahan nyata di dunia bisnis sehingga AI bukan
+              hanya menjadi teknologi yang terlihat canggih, tetapi benar-benar memberikan manfaat yang dapat digunakan
+              dan dirasakan.
             </p>
-
-           
-            </div>
-
+          </div>
         </div>
+      </section>
 
-    </div>
-</section>
-
-
-        <!-- =========================
+      <!-- =========================
              CONTACT
         ========================== -->
-        <section id="kontak" class="contact section">
+      <section id="kontak" class="contact section">
+        <div class="contact-container">
+          <div class="contact-text">
+            <p class="section-label">START A CONVERSATION</p>
 
-            <div class="contact-container">
+            <h2>
+              Ready to build<br />
+              with intelligence?
+            </h2>
 
+            <p>Mari diskusikan bagaimana AI dapat membantu bisnis kamu berkembang.</p>
+          </div>
 
-                <div class="contact-text">
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="nama"> Nama </label>
 
-                    <p class="section-label">
-                        START A CONVERSATION
-                    </p>
-
-                    <h2>
-                        Ready to build<br>
-                        with intelligence?
-                    </h2>
-
-                    <p>
-                        Mari diskusikan bagaimana AI dapat
-                        membantu bisnis kamu berkembang.
-                    </p>
-
-                </div>
-
-
-
-                <form class="contact-form">
-
-
-                    <div class="form-group">
-
-                        <label for="nama">
-                            Nama
-                        </label>
-
-                        <input
-                            type="text"
-                            id="nama"
-                            placeholder="Nama kamu"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="email">
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="nama@email.com"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="pesan">
-                            Pesan
-                        </label>
-
-                        <textarea
-                            id="pesan"
-                            rows="4"
-                            placeholder="Ceritakan kebutuhan kamu..."
-                            required
-                        ></textarea>
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="button button-primary"
-                    >
-                        Let's Talk ↗
-                    </button>
-
-                </form>
-
+              <input type="text" id="nama" placeholder="Nama kamu" required />
             </div>
 
-        </section>
+            <div class="form-group">
+              <label for="email"> Email </label>
 
+              <input type="email" id="email" placeholder="nama@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="pesan"> Pesan </label>
+
+              <textarea id="pesan" rows="4" placeholder="Ceritakan kebutuhan kamu..." required></textarea>
+            </div>
+
+            <button type="submit" class="button button-primary">Let's Talk ↗</button>
+          </form>
+        </div>
+      </section>
     </main>
-
-
 
     <!-- =========================
          FOOTER
     ========================== -->
     <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <a href="#home" class="brand">
+            <span class="brand-logo"> Y </span>
 
-        <div class="footer-container">
+            <span class="brand-name"> YONOVA </span>
+          </a>
 
-
-            <div class="footer-brand">
-
-                <a href="#home" class="brand">
-
-                    <span class="brand-logo">
-                        Y
-                    </span>
-
-                    <span class="brand-name">
-                        YONOVA
-                    </span>
-
-                </a>
-
-                <p>
-                    A New Era of Intelligence.
-                </p>
-
-            </div>
-
-
-
-            <div class="footer-links">
-
-                <a href="#home">Home</a>
-
-                <a href="#layanan">Services</a>
-
-                <a href="#tentang">About</a>
-
-                <a href="blog.html">Blog</a>
-
-                <a href="cv.html">CV</a>
-
-                <a href="#kontak">Contact</a>
-
-            </div>
-
+          <p>A New Era of Intelligence.</p>
         </div>
 
+        <div class="footer-links">
+          <a href="#home">Home</a>
 
-        <div class="copyright">
+          <a href="#layanan">Services</a>
 
-            © 2026 YONOVA. All rights reserved.
+          <a href="#tentang">About</a>
 
+          <a href="blog.html">Blog</a>
+
+          <a href="cv.html">CV</a>
+
+          <a href="#kontak">Contact</a>
         </div>
+      </div>
 
+      <div class="copyright">© 2026 YONOVA. All rights reserved.</div>
     </footer>
-
 
     <!-- =========================
          MOBILE NAV SCRIPT
     ========================== -->
     <script>
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
 
-        navToggle.addEventListener('click', () => {
-            const isOpen = navLinks.classList.toggle('open');
-            navToggle.classList.toggle('open', isOpen);
-            navToggle.setAttribute('aria-expanded', isOpen);
-        });
+      navToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        navToggle.classList.toggle("open", isOpen);
+        navToggle.setAttribute("aria-expanded", isOpen);
+      });
 
-        navLinks.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-                navToggle.classList.remove('open');
-                navToggle.setAttribute('aria-expanded', 'false');
-            });
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          navToggle.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
         });
+      });
     </script>
-
-</body>
+  </body>
 </html>
